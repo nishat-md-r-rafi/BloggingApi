@@ -6,14 +6,17 @@ const post = require('./routes/posts')
 const category = require('./routes/category')
 const user = require('./routes/user')
 const cors = require('cors')
+const config = require('config') 
 
 dotenv.config({ path: "./.env" })
 const app = express();
 const PORT = 5000 || process.env.PORT
 
+// console.log(`application url : ${config.get("URL")}`)
 
 
-mongoose.connect("mongodb://0.0.0.0:27017/blogs")
+
+mongoose.connect(config.get("URL"))
                     .then(()=>{console.log("MongoDB is connected")})
                     .catch((err) => {console.log(err)})
 
